@@ -15,31 +15,30 @@ Algorithm
 
 Author: Wesin Alves
 '''
-import itertools as it
 
-def take_triplets(n,X):
-	triplets = list(it.combinations(X,3))
-	return triplets
-	
-
-		
+import numpy as np	
 
 t = int(input())
 
-for l in range(1, t + 1):
+for l in range(1, t+1):
 	count = 0;
 	n = int(input())
-	X = input().split(' ')
-	triplets = take_triplets(n,X)
+	A = input().split(' ')
+	A[:] = [int(s) for s in A]
 
+	A_sorted = np.float64(np.sort(A))
+	
 	# check conditions
-	for triplet in triplets:
-		if(int(triplet[0]) == int(triplet[1]) * int(triplet[2])):
-			count += 1
-		elif(int(triplet[1]) == int(triplet[0]) * int(triplet[2])):
-			count += 1
-		elif(int(triplet[2]) == int(triplet[0]) * int(triplet[1])):
-			count += 1
-
+	for z in range(len(A_sorted),0,-1):
+		for y in range(z-1,0,-1):
+			for x in range(y-1,0,-1):
+					
+				if(A_sorted[x-1] == A_sorted[y-1] * A_sorted[z-1]):
+					count += 1
+				elif(A_sorted[y-1] == A_sorted[x-1] * A_sorted[z-1]):
+					count += 1
+				elif(A_sorted[z-1] == A_sorted[x-1] * A_sorted[y-1]):
+					count += 1
 
 	print("Case #{}: {}".format(l, count))
+
