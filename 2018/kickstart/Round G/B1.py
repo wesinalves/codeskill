@@ -15,6 +15,18 @@ Author: Wesin Alves
 '''
 import numpy as np
 
+def binary_search(x, vector, inf, sup):
+	mid = (inf + sup) // 2
+	if vector[mid] == x:
+		return mid
+	if inf >= sup:
+		return -1; #not found
+	elif vector[mid] < x:
+		return binary_search(x,vector,mid + 1, sup)
+	else:
+		return binary_search(x,vector, inf, mid - 1)
+
+
 def gen_array(x1,x2,a1,b1,c1,m1,n):
 	X = []
 	X.append(x1)
@@ -24,7 +36,14 @@ def gen_array(x1,x2,a1,b1,c1,m1,n):
 
 	return X
 
+a = input().split(' ')
+a[:] = [int(s) for s in a]
+x = int(input())
 
+y = binary_search(x,a,inf=0,sup=10)
+print(y)
+
+'''
 t = int(input())
 for l in range(1, t + 1):
 	n, q = input().split(" ")
@@ -70,3 +89,4 @@ for l in range(1, t + 1):
 
 	
 	print("Case #{}: {}".format(n, sum_of_sxi))
+'''

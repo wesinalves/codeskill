@@ -25,11 +25,18 @@ import math
 
 t = int(input())
 
-def C_nxs(n,s):
+def number_of_combinations(n,s):
 	count = 0
 	if n == 0 or s > n: 
 		return 0
 	count = math.factorial(n) // (math.factorial(s) * math.factorial(n-s))
+	return count
+
+def number_of_arranges(n,s):
+	count = 0
+	if n == 0 or s > n: 
+		return 0
+	count = math.factorial(n) // (math.factorial(n-s))
 	return count 
 
 for l in range(1, t+1):
@@ -48,14 +55,14 @@ for l in range(1, t+1):
 	# check conditions
 	for y in range(n,0,-1):
 		for x in range(y-1,0,-1):
+			if A_sorted[x-1] == 0:
+				continue
 			ans = ans + occurrences.get(A_sorted[x-1] * A_sorted[y-1], 0) # it is the same to code if z = x * y
 		occurrences[A_sorted[y-1]] = occurrences.get(A_sorted[y-1], 0) + 1
 
 	Z = occurrences.get(0,0)
-	C_Zx3 = C_nxs(Z,3)
-	#3print(C_Zx3)
-	C_Zx2 = C_nxs(Z,2)
-	#print(C_Zx2)
+	C_Zx3 = number_of_combinations(Z,3)
+	C_Zx2 = number_of_combinations(Z,2)
 	ans = ans + C_Zx3 + (C_Zx2 * (n - Z))
 	print("Case #{}: {}".format(l, ans))
 
