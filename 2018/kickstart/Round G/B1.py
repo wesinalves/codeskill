@@ -20,7 +20,7 @@ def binary_search(x, vector, inf, sup):
 	if vector[mid] == x:
 		return mid
 	if inf >= sup:
-		return -1; #not found
+		return 0; #not found
 	elif vector[mid] < x:
 		return binary_search(x,vector,mid + 1, sup)
 	else:
@@ -35,14 +35,13 @@ def gen_array(x1,x2,a1,b1,c1,m1,n):
 		X.append( (a1*X[i-1] + b1*X[i-2] + c1) % m1 )
 
 	return X
-
+'''
 a = input().split(' ')
 a[:] = [int(s) for s in a]
-x = int(input())
+x,inf,sup = input().split(' ')
 
-y = binary_search(x,a,inf=0,sup=10)
+y = binary_search(int(x),a,int(inf),int(sup))
 print(y)
-
 '''
 t = int(input())
 for l in range(1, t + 1):
@@ -69,7 +68,7 @@ for l in range(1, t + 1):
 	scores = []
 
 	for i in range(len(L)):
-		notes = np.arange(L[i],R[i]+1, dtype='int8')
+		notes = np.arange(L[i],R[i]+1)
 		for note in notes:
 			scores.append(note)
 
@@ -77,16 +76,11 @@ for l in range(1, t + 1):
 
 
 	S = []
+	y = 0
 	for j in range(len(K)):
-		if K[j] - 1 < len(scores):
-			S.append(scores[K[j] - 1])
-		else:
-			S.append(0)
-	
-	sum_of_sxi = 0
-	for k,s in enumerate(S):
-		sum_of_sxi += s * (k + 1)
+		total_students = R[j] - L[j] + 1
+		i = binary_search(scores[K[j]-1], scores, 0, total_students - 1)
+		y += scores[K[j]-1] * (i + 1)
 
 	
-	print("Case #{}: {}".format(n, sum_of_sxi))
-'''
+	print("Case #{}: {}".format(n, y))
