@@ -65,15 +65,18 @@ for l in range(1, t + 1):
 	R = np.maximum(X[:int(n)],Y[:int(n)]) + 1
 	K = np.array(Z[:int(q)]) + 1
 
+	'''
 	scores = []
-
 	for i in range(len(L)):
 		notes = np.arange(L[i],R[i]+1)
 		for note in notes:
 			scores.append(note)
 
 	scores.sort(reverse=True)
-
+	'''
+	for i in range(len(L)):
+		notes = np.arange(L[i],R[i]+1)
+		fx = notes[ > x] 
 
 	S = []
 	y = 0
