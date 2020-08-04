@@ -17,5 +17,11 @@ def mandelbrot(h, w, maxit=20):
 
     return divtime
 
-plt.imshow(mandelbrot(400,800))
-plt.show()
+def main():
+    '''Main function'''
+    # First set up the figure, the axis, and the plot element we want to animate
+    fig = plt.figure()
+    ax = plt.axes(xlim=(0, 10), ylim=(0, 10))
+
+    plt.imshow(mandelbrot(400,800))
+    plt.show()
