@@ -6,6 +6,7 @@ p -> chosen plate
 
 cases = int(input())
 
+'''
 def precompute_sum(matrix_values, num_stacks, num_plates, plates):
     '''Precompute sum of first x plates from stack i'''
     sum_of_firsts = []
@@ -27,12 +28,23 @@ def max_solution(matrix_values, num_stacks, num_plates, plates):
         for j in range(plates):
             solution[i][j] = 0
             for x in range(min(j, num_plates)):
-                if j <= num_stacks
-                    solution[i][j] = max(solution[i][j], summation[i][x] + solution[i-1][j-x])
-                else:
-                    solution[i][j] = max(solution[i][j], summation[i][x] + solution[i-1][j-x])
+                solution[i][j] = max(solution[i][j], summation[i][x] + solution[i-1][j-x])
     print(solution)
     return solution
+'''
+def beuty(idx, pcur, n, k, p, *dp):
+    '''Recursive function to find max solution'''
+    if idx > n or pcur < p:
+        return 0
+    
+    if dp[idx][pcur] != -1:
+        return dp[idx][pcur]
+
+    ans = 0
+    for j in range(k):
+        if pcur < j:
+            break
+        ans = max(ans, arr[idx][j] + beuty(idx+1, pcur-j, n, k, p, *dp)) 
 
 for t in range(cases):
     n, k, p = list(map(int, input().split()))
