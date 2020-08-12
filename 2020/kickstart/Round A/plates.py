@@ -27,10 +27,8 @@ def max_solution(matrix_values, num_stacks, num_plates, plates):
         for j in range(plates):
             solution[i][j] = 0
             for x in range(min(j, num_plates)):
-                if j <= num_stacks
-                    solution[i][j] = max(solution[i][j], summation[i][x] + solution[i-1][j-x])
-                else:
-                    solution[i][j] = max(solution[i][j], summation[i][x] + solution[i-1][j-x])
+                solution[i][j] = max(solution[i][j], summation[i][x] + solution[i-1][j-x])
+
     print(solution)
     return solution
 
