@@ -14,14 +14,15 @@ def main():
     tests = int(input())
     for t in range(tests):
         ans = 0
+        previous = 0
         n = int(input())
         samples = list(map(int, input().split()))
-        for i in range(1, n-1):
-            if samples[i] > samples[i+1] and samples[i] > samples[i-1]):
-                print(samples[i], samples[i-1], samples[i+1])
+        for i in range(n):
+            greater_than_previous = (i == 0 or samples[i] > previous)
+            greater_than_following = (i == n-1 or samples[i] > samples[i + 1])
+            if greater_than_previous and greater_than_following:
                 ans += 1
-
-
+            previous = max(previous, samples[i])
 
         print('Case #{}: {}'.format(t+1, ans))
 
