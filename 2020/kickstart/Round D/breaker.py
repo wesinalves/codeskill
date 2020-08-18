@@ -22,6 +22,7 @@ def main():
             greater_than_following = (i == n-1 or samples[i] > samples[i + 1])
             if greater_than_previous and greater_than_following:
                 ans += 1
+            
             previous = max(previous, samples[i])
 
         print('Case #{}: {}'.format(t+1, ans))
