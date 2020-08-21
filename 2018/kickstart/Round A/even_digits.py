@@ -23,14 +23,15 @@ a number is even if the module operation by 2 is 0.
 How to check if all numbers are even?
 
 '''
-def check_evens(digits):
+def check_evens(digits, start_search):
     '''check if all digits are even'''
     even = True
-    for d in str(digits):
-        if (int(d) % 2) != 0:
+    for d in range(start_search, len(str(digits))):
+        if (int(str(digits)[d]) % 2) != 0:
             even = False
-            return even
-    return even
+            start_search = d
+            return even, start_search
+    return even, start_search
 
 def main():
     '''Main function'''
@@ -40,20 +41,22 @@ def main():
         button_increase = 0
         button_decrease = 0
         n = int(input())
-        all_even = check_evens(n)
+        all_even, start = check_evens(n, 0)
+        start_increase = start
+        start_decrease = start
         while not all_even:
             button_increase += 1
-            all_even = check_evens(n + button_increase)
+            all_even, start_increase = check_evens(n + button_increase, start_increase)
             if all_even:
                 ans = button_increase
                 break
             button_decrease += 1
-            all_even = check_evens(n - button_decrease)
-        
+            all_even, start_decrease = check_evens(n - button_decrease, start_decrease)
+
         if all_even and ans == 0:
             ans = button_decrease
-            
-        
+
+
         print('Case #{}: {}'.format(t+1, ans))
 
 main()
