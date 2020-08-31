@@ -21,6 +21,23 @@ Comments
 ##############
 a number is even if the module operation by 2 is 0.
 How to check if all numbers are even?
+M -> mininum number of minus button
+P -> minium number of plus button
+ans = min(M,P)
+------------------------------------------------------
+X -> largest beautiful number < N
+- deacreasing first odd digits
+- replacing all digits to the right by 8
+- drop the leadings 0
+Y - smallest beautiful number > N
+- increasing firs odd digits
+- replaciong all digits to the right by 0
+- if first is 9, replace left digit by next even
+- if left digit to the first odd is 8, replace left digit by next even until non-8
+- if left digit continues 8 or first is 9, add 2 on he left
+------------------------------------------------------------
+Once we know X and Y, compute M and P.
+
 
 '''
 def check_evens(digits, start_search):
