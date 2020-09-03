@@ -40,6 +40,7 @@ Once we know X and Y, compute M and P.
 
 
 '''
+'''
 def check_evens(digits, start_search):
     '''check if all digits are even'''
     even = True
@@ -74,6 +75,33 @@ def main():
             ans = button_decrease
 
 
+        print('Case #{}: {}'.format(t+1, ans))
+'''
+def check_first_odd(digits):
+    '''check for first digit is odd'''
+    first = -1
+    for d in range(start_search, len(str(digits))):
+        if (int(str(digits)[d]) % 2) != 0:
+            first = d
+            return first
+    return first
+
+def leftmost_beutiful(number):
+    '''Find largest beautiful from N'''
+
+def rightmost_beautiful(number):
+    '''Find smallest beautiful from N'''
+
+def main():
+    '''Main Function'''
+    tests = int(input())
+    for t in range(tests):
+        n = int(input())
+        X = leftmost_beutiful(n)
+        Y = rightmost_beautiful(n)
+        M = n - X
+        P = Y - n
+        ans = min(M,P)
         print('Case #{}: {}'.format(t+1, ans))
 
 main()
