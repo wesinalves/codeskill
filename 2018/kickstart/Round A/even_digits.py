@@ -101,7 +101,11 @@ def main():
         Y = rightmost_beautiful(n)
         M = n - X
         P = Y - n
-        ans = min(M,P)
+        lower = min(M,P)
+        if lower == M:
+            ans = X
+        if lower == P:
+            ans = Y
         print('Case #{}: {}'.format(t+1, ans))
 
 main()
