@@ -57,17 +57,15 @@ def leftmost_beutiful(number):
     '''
     x_number = list(number)
     first_index = check_first_odd(number)
-    first_str = number[first_index]
-    new_first = int(first_str) - 1
-    x_number[first_index] = str(new_first)
-    x_number[first_index+1:] = ['8' for _ in range(len(x_number[first_index+1:]))]
-    if new_first == 0:
-        x_number.pop(first_index)
+    if first_index != -1:
+        first_str = number[first_index]
+        new_first = int(first_str) - 1
+        x_number[first_index] = str(new_first)
+        if len(x_number) > 1:
+            x_number[first_index+1:] = ['8' for _ in range(len(x_number[first_index+1:]))]
+            if new_first == 0:
+                x_number.pop(first_index)
     return ''.join(x_number)
-
-    
-
-
 
 def rightmost_beautiful(number):
     '''Find smallest beautiful from N
@@ -80,21 +78,22 @@ def rightmost_beautiful(number):
     '''
     y_number = list(number)
     first_index = check_first_odd(number)
-    first_str = number[first_index]
-    new_first = int(first_str) + 1
-    y_number[first_index] = str(new_first)
-    y_number[first_index:] = ['0' for _ in range(len(y_number[first_index:]))]
-    if y_number[first_index] == '9' and first_index > 0:
-        index = first_index - 1
-        while y_number[index] == '8':
-            y_number[index] = '0'
-            index -= 1
-        left = int(y_number[index]) + 2
-        y_number[index-1] = str(left)
-    if y_number[0] == '9':
-        y_number[0] = 2
-        y_number[1:] = ['0' for _ in range(len(y_number[1:]))]
-        y_number.append(0)
+    if first_index != -1:
+        first_str = number[first_index]
+        new_first = int(first_str) + 1
+        y_number[first_index] = str(new_first)
+        y_number[first_index+1:] = ['0' for _ in range(len(y_number[first_index+1:]))]
+        if first_str == '9' and first_index > 0:            
+            index = first_index - 1
+            while y_number[index] == '8':
+                y_number[index] = '0'
+                index -= 1
+            left = int(y_number[index]) + 2
+            y_number[index-1] = str(left)
+        if y_number[0] == '9':
+            y_number[0] = 2
+            y_number[1:] = ['0' for _ in range(len(y_number[1:]))]
+            y_number.append(0)
     
     return ''.join(y_number)
     
@@ -109,13 +108,13 @@ def main():
         X = leftmost_beutiful(n)
         Y = rightmost_beautiful(n)
         #print(n,X)
-        M = int(n) - int(X)
-        P = int(Y) - int(n)
+        M = abs(int(X) - int(n))
+        P = abs(int(Y) - int(n))
         lower = min(M,P)
         if lower == M:
-            ans = X
+            ans = M
         if lower == P:
-            ans = Y
+            ans = P
         print('Case #{}: {}'.format(t+1, ans))
 
 main()
