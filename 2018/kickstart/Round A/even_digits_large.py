@@ -80,20 +80,22 @@ def rightmost_beautiful(number):
     first_index = check_first_odd(number)
     if first_index != -1:
         first_str = number[first_index]
-        new_first = int(first_str) + 1
-        y_number[first_index] = str(new_first)
         y_number[first_index+1:] = ['0' for _ in range(len(y_number[first_index+1:]))]
-        if first_str == '9' and first_index > 0:            
+        if first_str == '9' and first_index > 0:
+            y_number[first_index] = '0'            
             index = first_index - 1
             while y_number[index] == '8':
                 y_number[index] = '0'
                 index -= 1
             left = int(y_number[index]) + 2
             y_number[index-1] = str(left)
-        if y_number[0] == '9':
+        elif y_number[0] == '9':
             y_number[0] = 2
             y_number[1:] = ['0' for _ in range(len(y_number[1:]))]
             y_number.append(0)
+        else:
+            new_first = int(first_str) + 1
+            y_number[first_index] = str(new_first)            
     
     return ''.join(y_number)
     
@@ -116,5 +118,6 @@ def main():
         if lower == P:
             ans = P
         print('Case #{}: {}'.format(t+1, ans))
+        print(n, X, Y)
 
 main()
