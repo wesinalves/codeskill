@@ -39,47 +39,10 @@ Y - smallest beautiful number > N
 Once we know X and Y, compute M and P.
 
 '''
-'''
-def check_evens(digits, start_search):
-    '''check if all digits are even'''
-    even = True
-    for d in range(start_search, len(str(digits))):
-        if (int(str(digits)[d]) % 2) != 0:
-            even = False
-            start_search = d
-            return even, start_search
-    return even, start_search
-
-def main():
-    '''Main function'''
-    tests = int(input())
-    for t in range(tests):
-        ans = 0
-        button_increase = 0
-        button_decrease = 0
-        n = int(input())
-        all_even, start = check_evens(n, 0)
-        start_increase = start
-        start_decrease = start
-        while not all_even:
-            button_increase += 1
-            all_even, start_increase = check_evens(n + button_increase, start_increase)
-            if all_even:
-                ans = button_increase
-                break
-            button_decrease += 1
-            all_even, start_decrease = check_evens(n - button_decrease, start_decrease)
-
-        if all_even and ans == 0:
-            ans = button_decrease
-
-
-        print('Case #{}: {}'.format(t+1, ans))
-'''
 def check_first_odd(digits):
     '''check for first digit is odd'''
     first = -1
-    for d in range(start_search, len(digits)):
+    for d in range(len(digits)):
         if (int(digits[d]) % 2) != 0:
             first = d
             return first
@@ -133,7 +96,7 @@ def rightmost_beautiful(number):
         y_number[1:] = ['0' for _ in range(len(y_number[1:]))]
         y_number.append(0)
     
-    return y_number
+    return ''.join(y_number)
     
 
 
@@ -145,6 +108,7 @@ def main():
         n = input()
         X = leftmost_beutiful(n)
         Y = rightmost_beautiful(n)
+        #print(n,X)
         M = int(n) - int(X)
         P = int(Y) - int(n)
         lower = min(M,P)
