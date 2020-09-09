@@ -38,6 +38,11 @@ Y - smallest beautiful number > N
 ------------------------------------------------------------
 Once we know X and Y, compute M and P.
 
+>>>
+Kickstart web inteface says this script has a runtime error, but I can't figure out where error is.
+Maybe the algorithm is not efficient even for the small dataset. I'll jump to the next challenge,
+after that I'll try again.
+
 '''
 def check_first_odd(digits):
     '''check for first digit is odd'''
@@ -88,7 +93,7 @@ def rightmost_beautiful(number):
                 y_number[index] = '0'
                 index -= 1
             left = int(y_number[index]) + 2
-            y_number[index-1] = str(left)
+            y_number[index] = str(left)
         elif y_number[0] == '9':
             y_number[0] = 2
             y_number[1:] = ['0' for _ in range(len(y_number[1:]))]
@@ -109,15 +114,13 @@ def main():
         n = input()
         X = leftmost_beutiful(n)
         Y = rightmost_beautiful(n)
-        #print(n,X)
-        M = abs(int(X) - int(n))
-        P = abs(int(Y) - int(n))
+        M = int(n) - int(X)
+        P = int(Y) - int(n)
         lower = min(M,P)
         if lower == M:
             ans = M
         if lower == P:
             ans = P
         print('Case #{}: {}'.format(t+1, ans))
-        print(n, X, Y)
 
 main()
