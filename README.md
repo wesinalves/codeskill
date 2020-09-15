@@ -1,2 +1,2 @@
-# googlecompetitions
-Repository for googlecompetition's code
+# codeskills
+Repository to improve code skilss
