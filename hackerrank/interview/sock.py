@@ -22,6 +22,17 @@ import sys
 
 # Complete the sockMerchant function below.
 def sockMerchant(n, ar):
+    '''Function to compute pairs of socks'''
+    pairs = list()
+    count = 0
+    for i in range(n):
+        try:
+            index = pairs.index(ar[i])
+            count += 1
+            pairs.pop(index)
+        except:
+            pairs.append(ar[i])
+    return count
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
