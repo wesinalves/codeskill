@@ -14,6 +14,11 @@ We define the following terms:
     A mountain is a sequence of consecutive steps above sea level, starting with a step up from sea level and ending with a step down to sea level.
     A valley is a sequence of consecutive steps below sea level, starting with a step down from sea level and ending with a step up to sea level.
 Given the sequence of up and down steps during a hike, find and print the number of valleys walked through. 
+################
+observations
+################
+everytime D occours above sea level
+trigging a flag , when return to sea level count the value
 '''
 
 #!/bin/python3
@@ -35,6 +40,25 @@ import sys
 
 def countingValleys(steps, path):
     # Write your code here
+    sea_level = 0
+    valley_flag = False
+    count = 0
+    for p in path:
+        if p == 'U':
+            sea_level += 1
+        else:
+            sea_level -= 1
+
+        if sea_level < 0:
+            valley_flag = True
+        elif sea_level == 0 and valley_flag == True:
+            count += 1
+            valley_flag = False 
+
+    return count
+
+
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
