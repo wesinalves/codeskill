@@ -14,6 +14,11 @@ it will take Emma to jump from her starting postion to the last cloud.
 It is always possible to win the game. 
 Complete the jumpingOnClouds function in the editor below. 
 It should return the minimum number of jumps required, as an integer. 
+###############
+Observations
+###############
+Try to jump 2 clouds, if not a good choice jump 1.
+
 '''
 
 #!/bin/python3
@@ -26,16 +31,31 @@ import sys
 
 # Complete the jumpingOnClouds function below.
 def jumpingOnClouds(c):
+    pointer = 0
+    jumps = 0
+    while pointer < len(c):
+        try:
+            if c[pointer + 2] == 0:
+                jumps += 1
+                pointer += 2
+            else:
+                jumps += 1
+                pointer += 1
+        except:
+            if pointer == len(c) - 2:
+                jumps += 1
+            break
+    
+    return jumps
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
-    n = int(input())
+def main():
+    t = 2
 
-    c = list(map(int, input().rstrip().split()))
+    for i in range(t):    
+        n = int(input())
+        c = list(map(int, input().rstrip().split()))
+        result = jumpingOnClouds(c)
+        print('Case #{}: {}'.format(i+1, result))
 
-    result = jumpingOnClouds(c)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+main()
