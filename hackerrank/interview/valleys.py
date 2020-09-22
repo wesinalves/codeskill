@@ -54,7 +54,6 @@ def countingValleys(steps, path):
         elif sea_level == 0 and valley_flag == True:
             count += 1
             valley_flag = False 
-
     return count
 
 
