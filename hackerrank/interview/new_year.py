@@ -58,27 +58,6 @@ import random
 import re
 import sys
 
-# # Complete the minimumBribes function below.
-# def minimumBribes(q):
-#     length = len(q)
-#     bribe = 0
-#     for i in range(length):
-#         swap = 0
-#         for j in range(length - i - 1):            
-#             if q[j] > q[j+1]:
-#                 q[j], q[j+1] = q[j+1], q[j]
-#                 swap += 1
-#                 bribe += 1
-#             if swap > 2:            
-#                 break
-#         if swap > 2:            
-#                 break
-        
-#     if swap > 2:
-#         print('Too chaotic')
-#     else:
-#         print(bribe)
-
 def minimumBribes(q):
     length = len(q)
     bribe = 0
